@@ -1,17 +1,11 @@
-// Récuperation des éléments cliquable
-
+// Récuperation des éléments cliquable:
 const leftArrow = document.querySelector(".arrow_left")
 const rightArrow = document.querySelector(".arrow_right")
-const dots = document.querySelector(".dot")
+const dotsContainer = document.querySelector(".dots")
 const bannerImage = document.querySelector(".banner-img")
 const bannerDesc = document.querySelector(".banner-description")
 
-const firstDot = document.querySelector('.dot1')
-const scndDot = document.querySelector('.dot2')
-const thrdDot = document.querySelector('.dot3')
-const frthDot = document.querySelector('.dot4')
-
-// Tableaux regroupant les images
+// Tableaux regroupant les images et les déscriptions à injecter dynamiquement dans le carrousel:
 const slides = [
 	{
 		"image": "slide1.jpg",
@@ -28,53 +22,128 @@ const slides = [
 	{
 		"image": "slide4.png",
 		"tagLine": "Autocollants <span>avec découpe laser sur mesure</span>"
-	}
+	}	
 ]
 
+// Fonction qui permet de changer d'image en récupérant les images et textes du tableau slides:
 
-// Fonction qui permet de changer d'image en récupérant le bon slide du tableau slides
-
-let numberImage = 0;
-
+let numberImage = 0; // L'index des images.
 const changeImage = (direction) => {
-	numberImage = numberImage + direction;
 
+	numberImage = numberImage + direction;
+	// Si l'index est supérieur à la taille du tableau slides -1, alors l'index repasse à 0.
 	if (numberImage > slides.length - 1) {
 		numberImage = 0;
 	}
+	// Si l'index est inférieur à 0 alors l'index repasse au dernier index du tableau slide à savoir 3.
 	if (numberImage < 0) {
 		numberImage = slides.length - 1;
 	}
+	// On recupère la source de l'image et la modifions dynamiquement.
 	bannerImage.src = "./assets/images/slideshow/" + slides[numberImage].image;
+	// On recupère la description des images et la modifions dynamiquement.
 	bannerDesc.innerHTML = slides[numberImage].tagLine;
-
-	// DOTS Ajouter et retirer
-
-	if (numberImage === 0) {
-		firstDot.classList.remove('selected')
-		scndDot.classList.remove('selected')
-		thrdDot.classList.remove('selected')
-		frthDot.classList.remove('selected')
-
-		firstDot.classList.add('selected')
-	} else if (numberImage === 1) {
-		firstDot.classList.remove('selected')
-		thrdDot.classList.remove('selected')
-		frthDot.classList.remove('selected')
-
-		scndDot.classList.add('selected')
-	} else if (numberImage === 2) {
-		firstDot.classList.remove('selected')
-		scndDot.classList.remove('selected')
-		frthDot.classList.remove('selected')
-
-		thrdDot.classList.add('selected')
-	} else if (numberImage === 3) {
-		firstDot.classList.remove('selected')
-		scndDot.classList.remove('selected')
-		thrdDot.classList.remove('selected')
-
-		frthDot.classList.add('selected')
-	}
+	// On trigger la fonction dotPing() ici de façon à ce qu'elle se déclenche à chaque fois que l'utilisateur souhaite changer d'image.
+	console.log(slides[numberImage])
+	dotPing()
 }
 
+// Fonction qui crée dynamiquement des bullets points par rapport à la taille du tableau slides:
+const createDots = () => {
+	// On utilise une boucle en lui indiquant de tourner tant que son index est inférieur à la taille du tableau slides.
+	for (let i = 0; i < slides.length ; i++) {
+	// On crée dynamiquement une nouvelle balise DIV dans le HTML.
+		const newDot = document.createElement('div');
+	// Cette DIV aura pour CLASS : "dot"
+		newDot.classList.add('dot');
+	// Cette DIV aura pour autre attribut un ID ainsi qu'un index différent par nouveau DOT.
+		newDot.setAttribute('id', i)
+	// Cette DIV s'integre au container DOTSCONTAINER déjà existant dans le HTML.
+		dotsContainer.appendChild(newDot);	
+	// On lui indique comme condition de donner au premier enfant de ce container la CLASS : "selected".
+		if (i === 0) { 
+			dotsContainer.firstChild.classList.add('selected');
+		}
+	}	
+}
+// On appel la fonction qui tournera automatiquement.
+createDots()
+
+// Fonction qui permet de supprimer la CLASS "selected" d'un DOT et de la mettre à un autre en fonction de l'index de l'image.
+const dotPing = () => {
+	// On recupère le nouvel élément crée dynamiquement du HTML.
+	const dot = document.getElementsByClassName('dot');
+	// On crée une boucle en lui indiquant de supprimer la CLASS "selected" des dot.
+	for (let i = 0; i < dot.length; i++) {
+		dot[i].classList.remove('selected')
+	}
+	// Hors de cette boucle, on ajoute la CLASS : "selected" au dot qui a le même index (numberImage) que l'image affiché dans le DOM.
+	// Sachant que la boucle tourne et que la CLASS : "selected" se supprime, cela donne l'effet que le dot se deplace.
+	dot[numberImage].classList.add('selected')
+	console.log(dot)
+}
+
+
+/*firstDot[i].classList.remove('selected');
+numberImage = i;*/
+
+
+/*const createDots = () => {
+	for (let i = 0; i < slides.length - 1; i++) {
+		newDot = document.createElement('div');
+		newDot.classList.add('dot');
+		newDot.setAttribute('id', i)
+		dotsContainer.appendChild(newDot);	
+	}	
+}
+createDots()*/
+
+/*console.log(numberImage)
+	console.log(newDot.id)*/
+
+/*setInterval("changeImage(1)", 3000)*/
+
+/*const newDot = document.createElement('div');
+newDot.classList.add('dot');
+dotsContainer.appendChild(newDot)*/
+
+/*if (numberImage === 0) {
+	firstDot.classList.remove('selected')
+	scndDot.classList.remove('selected')
+	thrdDot.classList.remove('selected')
+	frthDot.classList.remove('selected')
+
+	firstDot.classList.add('selected')
+} else if (numberImage === 1) {
+	firstDot.classList.remove('selected')
+	thrdDot.classList.remove('selected')
+	frthDot.classList.remove('selected')
+
+	scndDot.classList.add('selected')
+} else if (numberImage === 2) {
+	firstDot.classList.remove('selected')
+	scndDot.classList.remove('selected')
+	frthDot.classList.remove('selected')
+
+	thrdDot.classList.add('selected')
+} else if (numberImage === 3) {
+	firstDot.classList.remove('selected')
+	scndDot.classList.remove('selected')
+	thrdDot.classList.remove('selected')
+
+	frthDot.classList.add('selected')
+}*/
+
+/*
+const firstDot = document.querySelector('.dot1')
+const scndDot = document.querySelector('.dot2')
+const thrdDot = document.querySelector('.dot3')
+const frthDot = document.querySelector('.dot4')*/
+
+/*const firstDot = document.querySelector(".dot")*/
+
+	/*for (let i = 0; i < slides.length - 1; i++) {
+		newDot = firstDot.cloneNode(true);
+		dotsContainer.appendChild(newDot);	
+		newDot.classList.remove('selected');
+	}	*/
