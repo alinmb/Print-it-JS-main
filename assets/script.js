@@ -27,24 +27,24 @@ const slides = [
 
 // Fonction qui permet de changer d'image en récupérant les images et textes du tableau slides:
 
-let numberImage = 0; // L'index des images.
+let indexImage = 0; // L'index des images.
 const changeImage = (direction) => {
 
-	numberImage = numberImage + direction;
+	indexImage = indexImage + direction;
 	// Si l'index est supérieur à la taille du tableau slides -1, alors l'index repasse à 0.
-	if (numberImage > slides.length - 1) {
-		numberImage = 0;
+	if (indexImage > slides.length - 1) {
+		indexImage = 0;
 	}
 	// Si l'index est inférieur à 0 alors l'index repasse au dernier index du tableau slide à savoir 3.
-	if (numberImage < 0) {
-		numberImage = slides.length - 1;
+	if (indexImage < 0) {
+		indexImage = slides.length - 1;
 	}
 	// On recupère la source de l'image et la modifions dynamiquement.
-	bannerImage.src = "./assets/images/slideshow/" + slides[numberImage].image;
+	bannerImage.src = "./assets/images/slideshow/" + slides[indexImage].image;
 	// On recupère la description des images et la modifions dynamiquement.
-	bannerDesc.innerHTML = slides[numberImage].tagLine;
+	bannerDesc.innerHTML = slides[indexImage].tagLine;
 	// On trigger la fonction dotPing() ici de façon à ce qu'elle se déclenche à chaque fois que l'utilisateur souhaite changer d'image.
-	console.log(slides[numberImage])
+	console.log(slides[indexImage])
 	dotPing()
 }
 
@@ -77,15 +77,15 @@ const dotPing = () => {
 	for (let i = 0; i < dot.length; i++) {
 		dot[i].classList.remove('selected')
 	}
-	// Hors de cette boucle, on ajoute la CLASS : "selected" au dot qui a le même index (numberImage) que l'image affiché dans le DOM.
+	// Hors de cette boucle, on ajoute la CLASS : "selected" au dot qui a le même index (indexImage) que l'image affiché dans le DOM.
 	// Sachant que la boucle tourne et que la CLASS : "selected" se supprime, cela donne l'effet que le dot se deplace.
-	dot[numberImage].classList.add('selected')
-	console.log(dot)
+	dot[indexImage].classList.add('selected')
+	console.log(dot[indexImage])
 }
 
 
 /*firstDot[i].classList.remove('selected');
-numberImage = i;*/
+indexImage = i;*/
 
 
 /*const createDots = () => {
@@ -98,7 +98,7 @@ numberImage = i;*/
 }
 createDots()*/
 
-/*console.log(numberImage)
+/*console.log(indexImage)
 	console.log(newDot.id)*/
 
 /*setInterval("changeImage(1)", 3000)*/
@@ -107,26 +107,26 @@ createDots()*/
 newDot.classList.add('dot');
 dotsContainer.appendChild(newDot)*/
 
-/*if (numberImage === 0) {
+/*if (indexImage === 0) {
 	firstDot.classList.remove('selected')
 	scndDot.classList.remove('selected')
 	thrdDot.classList.remove('selected')
 	frthDot.classList.remove('selected')
 
 	firstDot.classList.add('selected')
-} else if (numberImage === 1) {
+} else if (indexImage === 1) {
 	firstDot.classList.remove('selected')
 	thrdDot.classList.remove('selected')
 	frthDot.classList.remove('selected')
 
 	scndDot.classList.add('selected')
-} else if (numberImage === 2) {
+} else if (indexImage === 2) {
 	firstDot.classList.remove('selected')
 	scndDot.classList.remove('selected')
 	frthDot.classList.remove('selected')
 
 	thrdDot.classList.add('selected')
-} else if (numberImage === 3) {
+} else if (indexImage === 3) {
 	firstDot.classList.remove('selected')
 	scndDot.classList.remove('selected')
 	thrdDot.classList.remove('selected')
