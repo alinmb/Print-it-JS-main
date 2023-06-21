@@ -57,7 +57,7 @@ const createDots = () => {
 	// Cette DIV aura pour CLASS : "dot"
 		newDot.classList.add('dot');
 	// Cette DIV aura pour autre attribut un ID ainsi qu'un index différent par nouveau DOT.
-		newDot.setAttribute('id', i)
+		newDot.setAttribute('id', 'dot-' +  i)
 	// Cette DIV s'integre au container DOTSCONTAINER déjà existant dans le HTML.
 		dotsContainer.appendChild(newDot);	
 	// On lui indique comme condition de donner au premier enfant de ce container la CLASS : "selected".
@@ -84,66 +84,4 @@ const dotPing = () => {
 }
 
 
-/*firstDot[i].classList.remove('selected');
-indexImage = i;*/
-
-
-/*const createDots = () => {
-	for (let i = 0; i < slides.length - 1; i++) {
-		newDot = document.createElement('div');
-		newDot.classList.add('dot');
-		newDot.setAttribute('id', i)
-		dotsContainer.appendChild(newDot);	
-	}	
-}
-createDots()*/
-
-/*console.log(indexImage)
-	console.log(newDot.id)*/
-
-/*setInterval("changeImage(1)", 3000)*/
-
-/*const newDot = document.createElement('div');
-newDot.classList.add('dot');
-dotsContainer.appendChild(newDot)*/
-
-/*if (indexImage === 0) {
-	firstDot.classList.remove('selected')
-	scndDot.classList.remove('selected')
-	thrdDot.classList.remove('selected')
-	frthDot.classList.remove('selected')
-
-	firstDot.classList.add('selected')
-} else if (indexImage === 1) {
-	firstDot.classList.remove('selected')
-	thrdDot.classList.remove('selected')
-	frthDot.classList.remove('selected')
-
-	scndDot.classList.add('selected')
-} else if (indexImage === 2) {
-	firstDot.classList.remove('selected')
-	scndDot.classList.remove('selected')
-	frthDot.classList.remove('selected')
-
-	thrdDot.classList.add('selected')
-} else if (indexImage === 3) {
-	firstDot.classList.remove('selected')
-	scndDot.classList.remove('selected')
-	thrdDot.classList.remove('selected')
-
-	frthDot.classList.add('selected')
-}*/
-
-/*
-const firstDot = document.querySelector('.dot1')
-const scndDot = document.querySelector('.dot2')
-const thrdDot = document.querySelector('.dot3')
-const frthDot = document.querySelector('.dot4')*/
-
-/*const firstDot = document.querySelector(".dot")*/
-
-	/*for (let i = 0; i < slides.length - 1; i++) {
-		newDot = firstDot.cloneNode(true);
-		dotsContainer.appendChild(newDot);	
-		newDot.classList.remove('selected');
-	}	*/
+// indexImage = (indexImage + direction) % slides.length;
