@@ -44,7 +44,6 @@ const changeImage = (direction) => {
 	// On recupère la description des images et la modifions dynamiquement.
 	bannerDesc.innerHTML = slides[indexImage].tagLine;
 	// On trigger la fonction dotPing() ici de façon à ce qu'elle se déclenche à chaque fois que l'utilisateur souhaite changer d'image.
-	console.log(slides[indexImage])
 	dotPing()
 }
 
@@ -56,8 +55,6 @@ const createDots = () => {
 		const newDot = document.createElement('div');
 	// Cette DIV aura pour CLASS : "dot"
 		newDot.classList.add('dot');
-	// Cette DIV aura pour autre attribut un ID ainsi qu'un index différent par nouveau DOT.
-		newDot.setAttribute('id', 'dot-' +  i)
 	// Cette DIV s'integre au container DOTSCONTAINER déjà existant dans le HTML.
 		dotsContainer.appendChild(newDot);	
 	// On lui indique comme condition de donner au premier enfant de ce container la CLASS : "selected".
@@ -80,8 +77,4 @@ const dotPing = () => {
 	// Hors de cette boucle, on ajoute la CLASS : "selected" au dot qui a le même index (indexImage) que l'image affiché dans le DOM.
 	// Sachant que la boucle tourne et que la CLASS : "selected" se supprime, cela donne l'effet que le dot se deplace.
 	dot[indexImage].classList.add('selected')
-	console.log(dot[indexImage])
 }
-
-
-// indexImage = (indexImage + direction) % slides.length;
